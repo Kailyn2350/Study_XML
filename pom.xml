@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>dev.study</groupId>
+  <artifactId>hello-world</artifactId>
+  <version>0.1.0</version>
+  <packaging>jar</packaging>
+  <name>hello-world</name>
+
+  <!-- 자바 버전(원하면 21로 바꿔도 됨) -->
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+
+  <!-- 지금은 외부 라이브러리 없음 -->
+  <dependencies>
+  </dependencies>
+
+  <!-- 편리하게 실행할 수 있도록 exec 플러그인만 세팅 -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <mainClass>dev.study.App</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

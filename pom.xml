@@ -17,19 +17,46 @@
 
   <!-- 지금은 외부 라이브러리 없음 -->
   <dependencies>
+    <dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.11.0</version>
+    </dependency>
   </dependencies>
 
   <!-- 편리하게 실행할 수 있도록 exec 플러그인만 세팅 -->
-  <build>
+    <build>
     <plugins>
-      <plugin>
+        <!-- exec:java는 남겨두고, shade 추가 -->
+        <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.2.0</version>
         <configuration>
-          <mainClass>dev.study.App</mainClass>
+            <mainClass>dev.study.App</mainClass>
         </configuration>
-      </plugin>
+        </plugin>
+
+        <!-- 실행 가능 JAR 생성 -->
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+            <execution>
+            <phase>package</phase>
+            <goals><goal>shade</goal></goals>
+            <configuration>
+                <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <mainClass>dev.study.App</mainClass>
+                </transformer>
+                </transformers>
+                <createDependencyReducedPom>false</createDependencyReducedPom>
+            </configuration>
+            </execution>
+        </executions>
+        </plugin>
     </plugins>
-  </build>
+    </build>
 </project>

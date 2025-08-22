@@ -2,6 +2,8 @@ package dev.study;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        String target = (args.length > 0) ? args[0] : "World";
+        String greet = System.getProperty("greet", "Hello");
+        System.out.println(greet + ", " + target + "!");
     }
 }
